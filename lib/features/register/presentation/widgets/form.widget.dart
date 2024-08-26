@@ -103,7 +103,31 @@ class FormWidget extends StatelessWidget {
               Expanded(
                   child: DropdownWidget(
                 icon: Icons.place,
+                hintText: 'Departamento de nacimiento',
+                items: _dropdownItems,
+                selectedItem: _selectedItem,
+                onChanged: (value) {
+                  _selectedItem = value;
+                },
+              )),
+              Expanded(
+                  child: DropdownWidget(
+                icon: Icons.place,
                 hintText: 'Lugar nacimiento',
+                items: _dropdownItems,
+                selectedItem: _selectedItem,
+                onChanged: (value) {
+                  _selectedItem = value;
+                },
+              )),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                  child: DropdownWidget(
+                icon: Icons.place,
+                hintText: 'Departamento de residencia',
                 items: _dropdownItems,
                 selectedItem: _selectedItem,
                 onChanged: (value) {
