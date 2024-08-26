@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:fresnoapp/features/register/presentation/register.page.dart';
 import 'package:fresnoapp/features/welcome/presentation/welcome.page.dart';
 
 void main() async {
@@ -18,11 +19,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      initialRoute: '/welcome',
+      // configuramos todas las rutas que vamos a tener en la aplicación
+      // llevan un nombre el contexto y el widget de cada vista.
+      routes: <String, WidgetBuilder>{
+        '/welcome': (BuildContext context) => const WelcomePage(),
+        '/register': (BuildContext context) => const RegisterPage(),
+      },
+
       home: const WelcomePage(),
     );
   }
