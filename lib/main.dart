@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:fresnoapp/features/register/presentation/register.page.dart';
+import 'package:fresnoapp/features/register/presentation/bloc/register_bloc.dart';
+import 'package:fresnoapp/features/register/presentation/page/register.page.dart';
 import 'package:fresnoapp/features/welcome/presentation/welcome.page.dart';
+import 'package:get_it/get_it.dart';
 
 void main() async {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +29,10 @@ class MyApp extends StatelessWidget {
       // llevan un nombre el contexto y el widget de cada vista.
       routes: <String, WidgetBuilder>{
         '/welcome': (BuildContext context) => const WelcomePage(),
-        '/register': (BuildContext context) => const RegisterPage(),
+        '/register': (BuildContext context) => BlocProvider<RegisterBloc>(
+              create: (context) => GetIt.I<RegisterBloc>(),
+              child: const RegisterPage(),
+            ),
       },
 
       home: const WelcomePage(),

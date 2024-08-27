@@ -8,10 +8,10 @@ enum RegisterStatus {
 }
 
 class RegisterState extends Equatable {
-  final List<DeparmentModel> bornDeparmentsList;
-  final List<DeparmentModel> bornCitysList;
-  final List<DeparmentModel> residenceDeparmentsList;
-  final List<DeparmentModel> residenceCitysList;
+  final List<DepartmentModel> bornDeparmentsList;
+  final List<DepartmentModel> bornCitysList;
+  final List<DepartmentModel> residenceDeparmentsList;
+  final List<DepartmentModel> residenceCitysList;
   final RequestUserModel userRequest;
   final RegisterStatus status;
   final ErrorModel error;
@@ -55,10 +55,10 @@ class RegisterState extends Equatable {
       ];
 
   RegisterState copyWith({
-    final List<DeparmentModel>? bornDeparmentsList,
-    final List<DeparmentModel>? bornCitysList,
-    final List<DeparmentModel>? residenceDeparmentsList,
-    final List<DeparmentModel>? residenceCitysList,
+    final List<DepartmentModel>? bornDeparmentsList,
+    final List<DepartmentModel>? bornCitysList,
+    final List<DepartmentModel>? residenceDeparmentsList,
+    final List<DepartmentModel>? residenceCitysList,
     final RequestUserModel? userRequest,
     final RegisterStatus? status,
     final ErrorModel? error,

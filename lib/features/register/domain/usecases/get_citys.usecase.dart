@@ -5,7 +5,8 @@ import 'package:fresnoapp/features/register/data/models/city.model.dart';
 import 'package:fresnoapp/features/register/domain/repository/register_respository.dart';
 import 'package:fresnoapp/features/register/domain/usecases/register_usecase.dart';
 
-class GetCitysUseCase extends RegisterUseCase<CityModel, int> {
+class GetCitysUseCase
+    extends RegisterUseCaseWithParameter<List<CityModel>, int> {
   final RegisterRespository _registerRepository;
 
   // Constructor que recibe un repositorio de tareas.
@@ -13,7 +14,7 @@ class GetCitysUseCase extends RegisterUseCase<CityModel, int> {
 
   // Método para ejecutar el caso de uso y agregar una nueva tarea.
   @override
-  Future<Either<ErrorModel, List<CityModel>>> execute(int? parameter) {
-    return _registerRepository.getCitys(parameter!);
+  Future<Either<ErrorModel, List<CityModel>>> execute(int parameter) {
+    return _registerRepository.getCitys(parameter);
   }
 }

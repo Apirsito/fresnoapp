@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'city.model.g.dart';
+part 'department.model.g.dart';
 
 @JsonSerializable()
-class CityModel {
+class DepartmentModel {
   int id;
   String catalogo;
   String valor;
@@ -11,7 +11,7 @@ class CityModel {
   String descripcion;
   String estado;
 
-  CityModel({
+  DepartmentModel({
     required this.id,
     required this.catalogo,
     required this.valor,
@@ -20,8 +20,8 @@ class CityModel {
     required this.estado,
   });
 
-  factory CityModel.fromJson(Map<String, dynamic> json) =>
-      _$CityModelFromJson(json);
+  factory DepartmentModel.fromJson(Map<String, dynamic> json) =>
+      _$DepartmentModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CityModelToJson(this);
+  Map<String, dynamic> toJson() => _$DepartmentModelToJson(this);
 }

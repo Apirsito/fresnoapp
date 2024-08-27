@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'request_user.model.g.dart';
+
+@JsonSerializable()
 class RequestUserModel {
   final String correo;
   final String password;
@@ -60,4 +65,9 @@ class RequestUserModel {
         direcicon: "",
         celular: "");
   }
+
+  factory RequestUserModel.fromJson(Map<String, dynamic> json) =>
+      _$RequestUserModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RequestUserModelToJson(this);
 }

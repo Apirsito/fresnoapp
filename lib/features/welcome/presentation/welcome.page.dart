@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fresnoapp/core/utils/app-colors.dart';
-import 'package:fresnoapp/features/register/presentation/register.page.dart';
+import 'package:fresnoapp/features/register/presentation/page/register.page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
