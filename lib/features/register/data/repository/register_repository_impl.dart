@@ -18,8 +18,8 @@ class RegisterRepositoryImpl implements RegisterRespository {
   }
 
   @override
-  Future<Either<ErrorModel, List<DepartmentModel>>> getDeparments() {
-    return _registerRemoteDataSource.getDeparments();
+  Future<Either<ErrorModel, List<DepartmentModel>>> getDepartments() {
+    return _registerRemoteDataSource.getDepartments();
   }
 
   @override

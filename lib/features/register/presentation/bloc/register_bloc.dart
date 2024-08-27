@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresnoapp/core/models/error_model.dart';
+import 'package:fresnoapp/features/register/data/models/city.model.dart';
 import 'package:fresnoapp/features/register/data/models/department.model.dart';
 import 'package:fresnoapp/features/register/data/models/request_user.model.dart';
+import 'package:fresnoapp/features/register/data/models/type_document.model.dart';
 import 'package:fresnoapp/features/register/domain/usecases/get_citys.usecase.dart';
 import 'package:fresnoapp/features/register/domain/usecases/get_deparments.usecase.dart';
 import 'package:fresnoapp/features/register/domain/usecases/get_type_document.dart';
@@ -50,7 +52,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     result.fold(
       (error) =>
           emit(state.copyWith(status: RegisterStatus.error, error: error)),
-      (listTask) => emit(state.copyWith()),
+      (list) => emit(state.copyWith(
+          status: RegisterStatus.succes,
+          bornDeparmentsList: list,
+          residenceDeparmentsList: list)),
     );
   }
 
@@ -60,7 +65,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     result.fold(
       (error) =>
           emit(state.copyWith(status: RegisterStatus.error, error: error)),
-      (listTask) => emit(state.copyWith()),
+      (list) => emit(state.copyWith(
+          status: RegisterStatus.succes, typeDocumentsList: list)),
     );
   }
 

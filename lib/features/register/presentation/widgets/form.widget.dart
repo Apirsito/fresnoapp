@@ -1,20 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fresnoapp/core/widgets/dropdown.widget.dart';
 import 'package:fresnoapp/core/widgets/input.widget.dart';
+import 'package:fresnoapp/features/register/data/models/city.model.dart';
+import 'package:fresnoapp/features/register/data/models/department.model.dart';
+import 'package:fresnoapp/features/register/data/models/type_document.model.dart';
+import 'package:fresnoapp/features/register/presentation/bloc/register_bloc.dart';
 
 class FormWidget extends StatelessWidget {
-  const FormWidget({super.key});
+  final RegisterState state;
+  // final List<DepartmentModel> bornDeparmentsList;
+  // final List<DepartmentModel> bornCitysList;
+  // final List<DepartmentModel> residenceDeparmentsList;
+  // final List<DepartmentModel> residenceCitysList;
+  // final List<TypeDocumentModel> typeDocumentsList;
+  // final String selectedBornDepartment;
+  // final String selectedBornCity;
+  // final String selectedResidenceDepartment;
+  // final String selectedResidenceCity;
+  // final TypeDocumentModel selectedTypeDocument;
+  const FormWidget({super.key, required this.state
+      // required this.bornDeparmentsList,
+      // required this.bornCitysList,
+      // required this.residenceDeparmentsList,
+      // required this.residenceCitysList,
+      // required this.typeDocumentsList,
+      // required this.selectedBornDepartment,
+      // required this.selectedBornCity,
+      // required this.selectedResidenceDepartment,
+      // required this.selectedResidenceCity,
+      // required this.selectedTypeDocument,
+      });
 
   @override
   Widget build(BuildContext context) {
-    String? _selectedItem;
-    final List<String> _dropdownItems = [
-      'Opción 1',
-      'Opción 2',
-      'Opción 3',
-      'Opción 4',
-    ];
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListView(
@@ -22,14 +41,13 @@ class FormWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                  child: DropdownWidget(
+                  child: DropdownWidget<TypeDocumentModel>(
                 icon: Icons.credit_card,
                 hintText: 'Tipo documento',
-                items: _dropdownItems,
-                selectedItem: _selectedItem,
-                onChanged: (value) {
-                  _selectedItem = value;
-                },
+                items: state.typeDocumentsList,
+                selectedItem: state.selectedTypeDocument,
+                itemAsString: (TypeDocumentModel value) => value.descripcion,
+                onChanged: (value) {},
               )),
               const Expanded(
                   child: InputWidget(
@@ -101,49 +119,49 @@ class FormWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                  child: DropdownWidget(
+                  child: Expanded(
+                      child: DropdownWidget<DepartmentModel>(
                 icon: Icons.place,
                 hintText: 'Departamento de nacimiento',
-                items: _dropdownItems,
-                selectedItem: _selectedItem,
-                onChanged: (value) {
-                  _selectedItem = value;
-                },
-              )),
+                items: state.bornDeparmentsList,
+                selectedItem: state.selectedBornDepartment,
+                itemAsString: (DepartmentModel value) => value.descripcion,
+                onChanged: (value) {},
+              ))),
               Expanded(
-                  child: DropdownWidget(
+                  child: Expanded(
+                      child: DropdownWidget<CityModel>(
                 icon: Icons.place,
-                hintText: 'Lugar nacimiento',
-                items: _dropdownItems,
-                selectedItem: _selectedItem,
-                onChanged: (value) {
-                  _selectedItem = value;
-                },
-              )),
+                hintText: 'Ciudad de nacimiento',
+                items: state.bornCitysList,
+                selectedItem: state.selectedBornCity,
+                itemAsString: (CityModel value) => value.descripcion,
+                onChanged: (value) {},
+              ))),
             ],
           ),
           Row(
             children: [
               Expanded(
-                  child: DropdownWidget(
+                  child: Expanded(
+                      child: DropdownWidget<DepartmentModel>(
                 icon: Icons.place,
                 hintText: 'Departamento de residencia',
-                items: _dropdownItems,
-                selectedItem: _selectedItem,
-                onChanged: (value) {
-                  _selectedItem = value;
-                },
-              )),
+                items: state.residenceDeparmentsList,
+                selectedItem: state.selectedResidenceDepartment,
+                itemAsString: (DepartmentModel value) => value.descripcion,
+                onChanged: (value) {},
+              ))),
               Expanded(
-                  child: DropdownWidget(
+                  child: Expanded(
+                      child: DropdownWidget<CityModel>(
                 icon: Icons.place,
-                hintText: 'Lugar recidencia',
-                items: _dropdownItems,
-                selectedItem: _selectedItem,
-                onChanged: (value) {
-                  _selectedItem = value;
-                },
-              )),
+                hintText: 'Ciudad de recidencia',
+                items: state.residenceCitysList,
+                selectedItem: state.selectedResidenceCity,
+                itemAsString: (CityModel value) => value.descripcion,
+                onChanged: (value) {},
+              ))),
             ],
           ),
         ],

@@ -13,6 +13,6 @@ class GetDepartamentsUseCase extends RegisterUseCase<List<DepartmentModel>> {
   // Método para ejecutar el caso de uso y agregar una nueva tarea.
   @override
   Future<Either<ErrorModel, List<DepartmentModel>>> execute() {
-    return _registerRepository.getDeparments();
+    return _registerRepository.getDepartments();
   }
 }

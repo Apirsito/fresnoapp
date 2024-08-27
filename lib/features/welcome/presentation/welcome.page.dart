@@ -20,7 +20,7 @@ class WelcomePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Image(
-                    image: AssetImage("assets/images/logo-fresno.png"),
+                    image: const AssetImage("assets/images/logo-fresno.png"),
                     height: MediaQuery.of(context).size.height / 2,
                   ),
                 ),
@@ -28,14 +28,14 @@ class WelcomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
-                      Text(
+                      const Text(
                         "Bienvenido a ",
                         style: TextStyle(
                             fontSize: 30,
                             color: Colors.white,
                             fontFamily: "NerkoOne"),
                       ),
-                      Text(
+                      const Text(
                         "FRESNO",
                         style: TextStyle(
                             fontSize: 70,
@@ -52,7 +52,7 @@ class WelcomePage extends StatelessWidget {
                               ),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             "Ingresar",
                             style: TextStyle(
                                 fontSize: 20,

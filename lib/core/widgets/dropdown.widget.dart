@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:fresnoapp/core/utils/app-colors.dart';
 
-class DropdownWidget extends StatelessWidget {
+class DropdownWidget<T> extends StatelessWidget {
   final String hintText;
-  final List<String> items;
-  final String? selectedItem;
-  final ValueChanged<String?> onChanged;
+  final List<T> items;
+  final T selectedItem;
+  final ValueChanged<T?> onChanged;
   final IconData icon;
-
+  final String Function(T) itemAsString;
   const DropdownWidget(
       {Key? key,
       required this.hintText,
       required this.items,
-      this.selectedItem,
+      required this.selectedItem,
       required this.onChanged,
+      required this.itemAsString,
       required this.icon})
       : super(key: key);
 
@@ -21,15 +22,14 @@ class DropdownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5),
-      child: DropdownButtonFormField<String>(
-        value: selectedItem,
+      child: DropdownButtonFormField<T>(
+        value: itemAsString(selectedItem) != "" ? selectedItem : null,
         decoration: InputDecoration(
           filled: true,
           fillColor:
               const Color.fromARGB(132, 224, 224, 224), // Color de fondo gris
-
           labelText: hintText,
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
             color: AppColors.grayText, // Color del label
           ),
           floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -43,9 +43,9 @@ class DropdownWidget extends StatelessWidget {
               const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
         ),
         items: items.map((item) {
-          return DropdownMenuItem<String>(
+          return DropdownMenuItem<T>(
             value: item,
-            child: Text(item),
+            child: Text(itemAsString(item)),
           );
         }).toList(),
         onChanged: onChanged,

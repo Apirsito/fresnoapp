@@ -11,7 +11,7 @@ abstract class RegisterRespository {
   Future<Either<ErrorModel, List<CityModel>>> getCitys(int idDepartment);
 
   // Método para agregar una nueva tarea.
-  Future<Either<ErrorModel, List<DepartmentModel>>> getDeparments();
+  Future<Either<ErrorModel, List<DepartmentModel>>> getDepartments();
 
   // Método para eliminar una tarea.
   Future<Either<ErrorModel, List<TypeDocumentModel>>> getTypeDocument();

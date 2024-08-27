@@ -4,14 +4,14 @@ part 'city.model.g.dart';
 
 @JsonSerializable()
 class CityModel {
-  int id;
-  String catalogo;
-  String valor;
-  String valorAux;
-  String descripcion;
-  String estado;
+  final int id;
+  final String catalogo;
+  final String valor;
+  final String valorAux;
+  final String descripcion;
+  final String estado;
 
-  CityModel({
+  const CityModel({
     required this.id,
     required this.catalogo,
     required this.valor,

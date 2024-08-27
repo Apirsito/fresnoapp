@@ -3,14 +3,14 @@ part 'type_document.model.g.dart';
 
 @JsonSerializable()
 class TypeDocumentModel {
-  int id;
-  String catalogo;
-  String valor;
-  String valorAux;
-  String descripcion;
-  String estado;
+  final int id;
+  final String catalogo;
+  final String valor;
+  final String valorAux;
+  final String descripcion;
+  final String estado;
 
-  TypeDocumentModel({
+  const TypeDocumentModel({
     required this.id,
     required this.catalogo,
     required this.valor,

@@ -4,14 +4,14 @@ part 'department.model.g.dart';
 
 @JsonSerializable()
 class DepartmentModel {
-  int id;
-  String catalogo;
-  String valor;
-  String valorAux;
-  String descripcion;
-  String estado;
+  final int id;
+  final String catalogo;
+  final String valor;
+  final String valorAux;
+  final String descripcion;
+  final String estado;
 
-  DepartmentModel({
+  const DepartmentModel({
     required this.id,
     required this.catalogo,
     required this.valor,
