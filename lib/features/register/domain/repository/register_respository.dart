@@ -8,7 +8,7 @@ import 'package:fresnoapp/features/register/data/models/type_document.model.dart
 
 abstract class RegisterRespository {
   // Método para obtener una lista de tareas.
-  Future<Either<ErrorModel, List<CityModel>>> getCitys(int idDepartment);
+  Future<Either<ErrorModel, List<CityModel>>> getCitys(String idDepartment);
 
   // Método para agregar una nueva tarea.
   Future<Either<ErrorModel, List<DepartmentModel>>> getDepartments();

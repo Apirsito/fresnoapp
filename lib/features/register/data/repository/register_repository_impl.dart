@@ -13,7 +13,7 @@ class RegisterRepositoryImpl implements RegisterRespository {
   RegisterRepositoryImpl(this._registerRemoteDataSource);
 
   @override
-  Future<Either<ErrorModel, List<CityModel>>> getCitys(int idDepartment) {
+  Future<Either<ErrorModel, List<CityModel>>> getCitys(String idDepartment) {
     return _registerRemoteDataSource.getCitys(idDepartment);
   }
 

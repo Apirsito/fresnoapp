@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fresnoapp/core/utils/app-colors.dart';
+import 'package:fresnoapp/core/utils/app_colors.dart';
 
 class DropdownWidget<T> extends StatelessWidget {
   final String hintText;

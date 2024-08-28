@@ -24,7 +24,7 @@ RequestUserModel _$RequestUserModelFromJson(Map<String, dynamic> json) =>
       sexo: json['sexo'] as String,
       lugarNacimiento: json['lugarNacimiento'] as String,
       lugarResidencia: json['lugarResidencia'] as String,
-      direcicon: json['direcicon'] as String,
+      direccion: json['direccion'] as String,
       celular: json['celular'] as String,
     );
 
@@ -46,6 +46,6 @@ Map<String, dynamic> _$RequestUserModelToJson(RequestUserModel instance) =>
       'sexo': instance.sexo,
       'lugarNacimiento': instance.lugarNacimiento,
       'lugarResidencia': instance.lugarResidencia,
-      'direcicon': instance.direcicon,
+      'direccion': instance.direccion,
       'celular': instance.celular,
     };

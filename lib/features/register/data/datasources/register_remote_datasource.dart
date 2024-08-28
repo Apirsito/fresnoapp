@@ -11,7 +11,8 @@ import 'package:fresnoapp/features/register/data/models/type_document.model.dart
 
 class RegisterRemoteDatasource {
   final HttpClient _httpClient = HttpClient();
-  Future<Either<ErrorModel, List<CityModel>>> getCitys(int idDepartment) async {
+  Future<Either<ErrorModel, List<CityModel>>> getCitys(
+      String idDepartment) async {
     try {
       final response = await _httpClient.get(
         Uri.parse("${Environment.baseUrl}/equivalencia/DIVIPOLA/$idDepartment"),
@@ -79,7 +80,8 @@ class RegisterRemoteDatasource {
   Future<Either<ErrorModel, int>> postUser(RequestUserModel requestUser) async {
     try {
       final response = await _httpClient.post<RequestUserModel>(
-          Uri.parse("${Environment.baseUrl}/usuario/register"), requestUser);
+          Uri.parse("${Environment.baseUrlRegister}/usuario/register"),
+          requestUser);
 
       if (response.statusCode == 200) {
         final int jsonData = json.decode(response.body);

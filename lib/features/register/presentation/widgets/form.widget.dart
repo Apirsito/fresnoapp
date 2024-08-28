@@ -9,28 +9,8 @@ import 'package:fresnoapp/features/register/presentation/bloc/register_bloc.dart
 
 class FormWidget extends StatelessWidget {
   final RegisterState state;
-  // final List<DepartmentModel> bornDeparmentsList;
-  // final List<DepartmentModel> bornCitysList;
-  // final List<DepartmentModel> residenceDeparmentsList;
-  // final List<DepartmentModel> residenceCitysList;
-  // final List<TypeDocumentModel> typeDocumentsList;
-  // final String selectedBornDepartment;
-  // final String selectedBornCity;
-  // final String selectedResidenceDepartment;
-  // final String selectedResidenceCity;
-  // final TypeDocumentModel selectedTypeDocument;
-  const FormWidget({super.key, required this.state
-      // required this.bornDeparmentsList,
-      // required this.bornCitysList,
-      // required this.residenceDeparmentsList,
-      // required this.residenceCitysList,
-      // required this.typeDocumentsList,
-      // required this.selectedBornDepartment,
-      // required this.selectedBornCity,
-      // required this.selectedResidenceDepartment,
-      // required this.selectedResidenceCity,
-      // required this.selectedTypeDocument,
-      });
+
+  const FormWidget({super.key, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -47,121 +27,192 @@ class FormWidget extends StatelessWidget {
                 items: state.typeDocumentsList,
                 selectedItem: state.selectedTypeDocument,
                 itemAsString: (TypeDocumentModel value) => value.descripcion,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  context.read<RegisterBloc>().add(
+                      UpdateSelectedDocumentTypeEvent(
+                          selectedDocumentType: value));
+                },
               )),
-              const Expanded(
+              Expanded(
                   child: InputWidget(
                 icon: Icons.credit_score_outlined,
                 placeholder: "Identificacion",
+                onChanged: (value) {
+                  context
+                      .read<RegisterBloc>()
+                      .add(UpdateDocumentEvent(document: value));
+                },
               ))
             ],
           ),
-          const InputWidget(
-            icon: Icons.store,
-            placeholder: "Nombre de la empresa",
-          ),
-          const Row(
-            children: [
-              Expanded(
-                  child: InputWidget(
-                icon: Icons.person,
-                placeholder: "Primer nombre",
-              )),
-              Expanded(
-                  child: InputWidget(
-                icon: Icons.person,
-                placeholder: "Segundo nombre",
-              ))
-            ],
-          ),
-          const Row(
-            children: [
-              Expanded(
-                  child: InputWidget(
-                icon: Icons.person,
-                placeholder: "Primer apellido",
-              )),
-              Expanded(
-                  child: InputWidget(
-                icon: Icons.person,
-                placeholder: "Segundo apellido",
-              ))
-            ],
-          ),
-          const Row(
+          state.selectedTypeDocument.valor == "NIT"
+              ? InputWidget(
+                  icon: Icons.store,
+                  placeholder: "Nombre de la empresa",
+                  onChanged: (value) {
+                    context
+                        .read<RegisterBloc>()
+                        .add(UpdateFullNameEvent(fullName: value));
+                  },
+                )
+              : const SizedBox(),
+          state.selectedTypeDocument.valor != "" &&
+                  state.selectedTypeDocument.valor != "NIT"
+              ? Row(
+                  children: [
+                    Expanded(
+                        child: InputWidget(
+                      icon: Icons.person,
+                      placeholder: "Primer nombre",
+                      onChanged: (value) {
+                        context
+                            .read<RegisterBloc>()
+                            .add(UpdateFirstNameEvent(firstName: value));
+                      },
+                    )),
+                    Expanded(
+                        child: InputWidget(
+                      icon: Icons.person,
+                      placeholder: "Segundo nombre",
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(
+                            UpdateSecondLastNameEvent(secondLastName: value));
+                      },
+                    ))
+                  ],
+                )
+              : const SizedBox(),
+          state.selectedTypeDocument.valor != "" &&
+                  state.selectedTypeDocument.valor != "NIT"
+              ? Row(
+                  children: [
+                    Expanded(
+                        child: InputWidget(
+                      icon: Icons.person,
+                      placeholder: "Primer apellido",
+                      onChanged: (value) {
+                        context
+                            .read<RegisterBloc>()
+                            .add(UpdateLastNameEvent(lastName: value));
+                      },
+                    )),
+                    Expanded(
+                        child: InputWidget(
+                      onChanged: (value) {
+                        context.read<RegisterBloc>().add(
+                            UpdateSecondLastNameEvent(secondLastName: value));
+                      },
+                      icon: Icons.person,
+                      placeholder: "Segundo apellido",
+                    ))
+                  ],
+                )
+              : const SizedBox(),
+          Row(
             children: [
               Expanded(
                   child: InputWidget(
                 icon: Icons.mail,
                 placeholder: "Correo",
+                onChanged: (value) {
+                  context
+                      .read<RegisterBloc>()
+                      .add(UpdateEmailEvent(email: value));
+                },
               )),
               Expanded(
                   child: InputWidget(
                 icon: Icons.password,
                 placeholder: "Contraseña",
+                onChanged: (value) {
+                  context
+                      .read<RegisterBloc>()
+                      .add(UpdatePasswordEvent(password: value));
+                },
               ))
             ],
           ),
-          const Row(
+          Row(
             children: [
               Expanded(
                   child: InputWidget(
                 icon: Icons.place,
                 placeholder: "Direccion",
+                onChanged: (value) {
+                  context
+                      .read<RegisterBloc>()
+                      .add(UpdateAddressEvent(address: value));
+                },
               )),
               Expanded(
                   child: InputWidget(
                 icon: Icons.phone,
                 placeholder: "Celular",
+                onChanged: (value) {
+                  context
+                      .read<RegisterBloc>()
+                      .add(UpdatePhoneEvent(phone: value));
+                },
               ))
             ],
           ),
           Row(
             children: [
               Expanded(
-                  child: Expanded(
-                      child: DropdownWidget<DepartmentModel>(
+                  child: DropdownWidget<DepartmentModel>(
                 icon: Icons.place,
                 hintText: 'Departamento de nacimiento',
                 items: state.bornDeparmentsList,
                 selectedItem: state.selectedBornDepartment,
                 itemAsString: (DepartmentModel value) => value.descripcion,
-                onChanged: (value) {},
-              ))),
+                onChanged: (value) {
+                  context
+                      .read<RegisterBloc>()
+                      .add(GetBornCitysEvent(idDepartment: value!.valor));
+                },
+              )),
               Expanded(
-                  child: Expanded(
-                      child: DropdownWidget<CityModel>(
+                  child: DropdownWidget<CityModel>(
                 icon: Icons.place,
                 hintText: 'Ciudad de nacimiento',
                 items: state.bornCitysList,
                 selectedItem: state.selectedBornCity,
                 itemAsString: (CityModel value) => value.descripcion,
-                onChanged: (value) {},
-              ))),
+                onChanged: (value) {
+                  context.read<RegisterBloc>().add(
+                      UpdateSelectedBornCityEvent(selectedBornCity: value));
+                },
+              )),
             ],
           ),
           Row(
             children: [
               Expanded(
-                  child: Expanded(
-                      child: DropdownWidget<DepartmentModel>(
+                  child: DropdownWidget<DepartmentModel>(
                 icon: Icons.place,
                 hintText: 'Departamento de residencia',
                 items: state.residenceDeparmentsList,
                 selectedItem: state.selectedResidenceDepartment,
                 itemAsString: (DepartmentModel value) => value.descripcion,
-                onChanged: (value) {},
-              ))),
+                onChanged: (value) {
+                  context
+                      .read<RegisterBloc>()
+                      .add(GetResidenceCitysEvent(idDepartment: value!.valor));
+                },
+              )),
               Expanded(
-                  child: Expanded(
-                      child: DropdownWidget<CityModel>(
+                  child: DropdownWidget<CityModel>(
                 icon: Icons.place,
                 hintText: 'Ciudad de recidencia',
                 items: state.residenceCitysList,
                 selectedItem: state.selectedResidenceCity,
                 itemAsString: (CityModel value) => value.descripcion,
-                onChanged: (value) {},
-              ))),
+                onChanged: (value) {
+                  context.read<RegisterBloc>().add(
+                      UpdateSelectedResidenceCityEvent(
+                          selectedResidenceCity: value));
+                },
+              )),
             ],
           ),
         ],

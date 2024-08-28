@@ -20,7 +20,7 @@ class RequestUserModel {
   final String sexo;
   final String lugarNacimiento;
   final String lugarResidencia;
-  final String direcicon;
+  final String direccion;
   final String celular;
 
   const RequestUserModel({
@@ -40,12 +40,12 @@ class RequestUserModel {
     required this.sexo,
     required this.lugarNacimiento,
     required this.lugarResidencia,
-    required this.direcicon,
+    required this.direccion,
     required this.celular,
   });
 
   static RequestUserModel empty() {
-    return RequestUserModel(
+    return const RequestUserModel(
         correo: "",
         password: "",
         tipo: "",
@@ -62,7 +62,7 @@ class RequestUserModel {
         sexo: "",
         lugarNacimiento: "",
         lugarResidencia: "",
-        direcicon: "",
+        direccion: "",
         celular: "");
   }
 
@@ -70,4 +70,46 @@ class RequestUserModel {
       _$RequestUserModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$RequestUserModelToJson(this);
+
+  RequestUserModel copyWith({
+    String? correo,
+    String? password,
+    String? tipo,
+    String? estado,
+    String? documento,
+    String? tipoDoc,
+    String? pNombre,
+    String? oNombres,
+    String? pApellido,
+    String? sApellido,
+    String? nombreCompleto,
+    String? marca,
+    String? foto,
+    String? sexo,
+    String? lugarNacimiento,
+    String? lugarResidencia,
+    String? direccion,
+    String? celular,
+  }) {
+    return RequestUserModel(
+      correo: correo ?? this.correo,
+      password: password ?? this.password,
+      tipo: tipo ?? this.tipo,
+      estado: estado ?? this.estado,
+      documento: documento ?? this.documento,
+      tipoDoc: tipoDoc ?? this.tipoDoc,
+      pNombre: pNombre ?? this.pNombre,
+      oNombres: oNombres ?? this.oNombres,
+      pApellido: pApellido ?? this.pApellido,
+      sApellido: sApellido ?? this.sApellido,
+      nombreCompleto: nombreCompleto ?? this.nombreCompleto,
+      marca: marca ?? this.marca,
+      foto: foto ?? this.foto,
+      sexo: sexo ?? this.sexo,
+      lugarNacimiento: lugarNacimiento ?? this.lugarNacimiento,
+      lugarResidencia: lugarResidencia ?? this.lugarResidencia,
+      direccion: direccion ?? this.direccion,
+      celular: celular ?? this.celular,
+    );
+  }
 }

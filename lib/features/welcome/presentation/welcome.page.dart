@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fresnoapp/core/utils/app-colors.dart';
+import 'package:fresnoapp/core/utils/app_colors.dart';
 import 'package:fresnoapp/features/register/presentation/page/register.page.dart';
 
 class WelcomePage extends StatelessWidget {
